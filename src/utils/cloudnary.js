@@ -1,24 +1,40 @@
 import { v2 as cloudinary } from 'cloudinary';
-import fs from "fs";
+import fs from 'fs';
+import dotenv from 'dotenv';
+
+dotenv.config(); 
 
 cloudinary.config({ 
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 const uploadToCloudinary = async (localFilePath) => {
+  if (!localFilePath) {
+    console.error("❌ No local file path provided");
+    return null;
+  }
+
+  console.log("📤 Uploading file:", localFilePath);
+
   try {
-    if (!localFilePath) return null;
-    const response = await cloudinary.v2.uploader.upload(localFilePath, {
-        resource_type: "auto"
+    const response = await cloudinary.uploader.upload(localFilePath, {
+      resource_type: 'auto',
     });
-    console.log("file is uploaded on Cloudinary successfully ", response.url);
+
+    console.log('✅ File uploaded to Cloudinary:', response.url);
     return response;
   } catch (error) {
-    fs.unlinkSync(localFilePath);
-    console.error("Error uploading to Cloudinary:", error);
+    console.error('❌ Cloudinary Upload Error:', error?.response?.body || error.message || error);
     return null;
+  } finally {
+    try {
+      fs.unlinkSync(localFilePath);
+      console.log('🧹 Local file deleted:', localFilePath);
+    } catch (fsErr) {
+      console.error('⚠️ Error deleting local file:', fsErr.message);
+    }
   }
 };
 
