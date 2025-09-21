@@ -25,7 +25,7 @@ This project is a part of my learning journey into **backend development** using
 |--------------|---------------------------------|
 | Node.js      | JavaScript runtime environment  |
 | Express.js   | Web framework for Node.js       |
-| Mongoose  | NoSQL Database for data-storage |
+| Mongoose     | NoSQL Database for data-storage |
 | Nodemon      | Auto-restarts server on changes |
 | Dotenv       | Loads environment variables     |
 | Prettier     | For good code strucuture        | 
