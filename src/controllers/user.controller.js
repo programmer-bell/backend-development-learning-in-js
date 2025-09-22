@@ -304,6 +304,7 @@ export {
   refreshAccessToken,
   changeCurrentPassword,
   generateAccessAndRefreshTokens,
+  getCurrnetUser,
   updateAccountDetails,
   updateUserAvatar,
   updateUserCoverImage
