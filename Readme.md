@@ -16,7 +16,7 @@ This project is a part of my learning journey into **backend development** using
 - Environment variables with `.env`
 - Basic file structure for backend apps
 - Additionally implement prettier 
-
+- Aggression Pipeline 
 ---
 
 ## 🛠 Tech Stack
